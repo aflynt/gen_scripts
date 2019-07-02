@@ -1,0 +1,4 @@
+s/\"\(.\+\): \1/\"\1/g
+s/Monitor //g
+#s/Monitor: //g
+# run with sed -f sed_script ifile
