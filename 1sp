@@ -1,0 +1,4 @@
+#!/bin/bash
+#onespace from multi ' '
+
+sed "s/[ ][ ]*/ /g"

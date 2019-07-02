@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#du -s * | sort -rn | awk -F"\t" '{printf "%30s %10d", $2, $1/1000000}'
+du -s * | sort -rn | awk        '{printf "%20.f %30s\n", $1/1048576.0, $2}'
+
+

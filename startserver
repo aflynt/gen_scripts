@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#cd /raid/linux9/apps/starccm/v804010/FLEXlm/11_9_1_0/bin
+#./lmgrd -c /raid/linux9/apps/starccm/v804010/FLEXlm/11_9_1_0/bin/licence.dat >> licence.log &
+
+
+cd /raid/linux9/apps/starccm/
+./ccm_lic_start  >> licence.log &

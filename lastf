@@ -1,0 +1,4 @@
+#!/bin/bash
+#lastf: print last updated file
+
+ls -tr | tail -n 1

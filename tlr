@@ -1,0 +1,66 @@
+#!/bin/bash
+
+# Show args reqd
+if [[ $# -lt 7 ]]
+then
+  echo "getTime t0h t0m t1h t1m f0 f1 fd"
+  echo "         1   2   3   4  5  6  7"
+  echo "1 (-h | --toh) = time-1st-hrs"
+  echo "2 (-m | --tom) = time-1st-min"
+  echo "3 (-H | --t1h) = time-2nd-hrs"
+  echo "4 (-M | --t1m) = time-2nd-min"
+  echo "5 (-S | --f0)  = file-size-1st"
+  echo "6 (-L | --f1)  = file-size-2nd"
+  echo "7 (-A | --fd)  = file-size-final"
+  exit
+fi
+
+# assign cmd line args to variables
+t0h=$1
+t0m=$2
+t1h=$3
+t1m=$4
+f0=$5
+f1=$6
+fd=$7
+
+# calc file size diff initially
+df0="`echo "$f1 - $f0 " | bc -l`"
+df0="`printf '%.2f' $df0`"
+
+# calc file size diff to end
+df1="`echo "$fd - $f1 " | bc -l`"
+df1="`printf '%.2f' $df1`"
+
+# calc time diff intially
+dt0="`echo "60.0 * ( $t1h - $t0h ) + $t1m - $t0m " | bc -l`"
+dt0="`printf '%.2f' $dt0`"
+
+# calc dfdt (GB/min)
+dfdt="`echo "$df0 / $dt0" | bc -l`"
+dfdt="`printf '%.2f' $dfdt`"
+
+# calc time diff to end
+dt1="`echo "$df1 / $dfdt" | bc -l`"
+dt1="`printf '%.2f' $dt1`"
+
+# calc dfdt (MB/sec)
+dfdt="`echo "$dfdt * 1024.0 / 60.0" | bc -l`"
+dfdt="`printf '%.2f' $dfdt`"
+
+
+# PRINT time left and rate
+printf "%s %s %s\n" $dt1 $dfdt "time-left(min) rate(MB/s)"
+
+
+#echo t0h = $t0h
+#echo t0m = $t0m
+#echo t1h = $t1h
+#echo t1m = $t1m
+#echo f0 = $f0
+#echo f1 = $f1
+#echo fd = $fd
+#echo "df0  (GB)    = $df0  "
+#echo "df1  (GB)    = $df1  "
+#echo "dt0  (min)   = $dt0  "
+#echo "dfdt (MB/s)  = $dfdt "

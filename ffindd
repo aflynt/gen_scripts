@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ls -ltra | grep $1 | awk "{print \$6,\$8}"

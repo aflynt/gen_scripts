@@ -1,0 +1,44 @@
+#!/bin/bash
+
+SLEEPTIME="58"
+#SLEEPTIME="10"
+MSGTIME="5"
+CNT=0
+
+# set grab time
+if [ "$1" != "" ]; then
+  grabTime=$1
+else
+  grabTime=10
+fi
+
+
+while true; do
+
+  #CHECK LICENSE FILE
+  isFree="`/home/flyntga/bin/gimme 1 2>/dev/null | grep ccmppower | tail -n 1 | rev | cut -d\" \" -f 2`"
+  #isFree="`cat fcheck`"
+
+  if [[ $isFree != 0 ]]; then
+    CNT=$((CNT+1))
+
+    echo `date` ": FREE $CNT"
+
+    if [[ $CNT -ge $grabTime ]]; then
+      kdialog --passivepopup "taking license: `date`" $MSGTIME &
+      #starccm+ -server -new -power -podkey cy33FlEnYm8lBSzJnaTc/A -licpath 1999@flex.cd-adapco.com
+      starccm+ -server -new -power &
+      #starccm+ -server -new &
+      exit 0
+    elif [[ $CNT -eq 1 ]]; then
+      kdialog --passivepopup "FREE license: `date`" $MSGTIME &
+    fi
+
+  else
+    CNT=0
+    echo `date` ": WAIT"
+  fi
+
+  sleep $SLEEPTIME
+done
+

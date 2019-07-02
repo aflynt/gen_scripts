@@ -1,0 +1,43 @@
+#!/bin/bash
+ADDR1="austin.flynt@jacobs.com"
+
+CASE="m48"
+DIR="/raid/linux3/flyntga/m48/postrun"
+cd $DIR; echo `pwd`; echo "Running mpi for case $CASE"
+mpirun -np 32 justus prob > output.dat
+SUBJECT="$CASE Done"
+BODY="$CASE Done on `date`"
+echo $BODY | mutt -s $SUBJECT -- $ADDR1
+
+CASE="m49"
+DIR="/raid/linux3/flyntga/m49/postrun"
+cd $DIR; echo `pwd`; echo "Running mpi for case $CASE"
+mpirun -np 32 justus prob > output.dat
+SUBJECT="$CASE Done"
+BODY="$CASE Done on `date`"
+echo $BODY | mutt -s $SUBJECT -- $ADDR1
+
+CASE="m50"
+DIR="/raid/linux4/flyntga/m50/postrun"
+cd $DIR; echo `pwd`; echo "Running mpi for case $CASE"
+mpirun -np 32 justus prob > output.dat
+SUBJECT="$CASE Done"
+BODY="$CASE Done on `date`"
+echo $BODY | mutt -s $SUBJECT -- $ADDR1
+
+CASE="m52"
+DIR="/raid/linux3/flyntga/m52/postrun"
+cd $DIR; echo `pwd`; echo "Running mpi for case $CASE"
+mpirun -np 32 justus prob > output.dat
+SUBJECT="$CASE Done"
+BODY="$CASE Done on `date`"
+echo $BODY | mutt -s $SUBJECT -- $ADDR1
+
+CASE="m53"
+DIR="/raid/linux3/flyntga/m53/postrun"
+cd $DIR; echo `pwd`; echo "Running mpi for case $CASE"
+mpirun -np 32 justus prob > output.dat
+SUBJECT="$CASE Done"
+BODY="$CASE Done on `date`"
+echo $BODY | mutt -s $SUBJECT -- $ADDR1
+

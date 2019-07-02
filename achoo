@@ -1,0 +1,27 @@
+#!/bin/bash
+
+#CHOICES=$(kdialog --checklist "select sites:" 1 "personal" off 2 "business site" off 3 "hobby site" off)
+#ret=0
+
+#until [ $ret == 1 ]; do
+while true; do
+  CHOICES=$(kdialog --radiolist "Select Action" 1 "check license" off 2 "compile" off 3 "plot" off)
+  ret=$?
+
+  if [[ "$ret" == 1 ]]; then
+    break
+  fi
+
+    case $CHOICES in
+      1)
+        echo "you chose 1"
+        gimme 1
+        ;;
+      2)
+        echo "you chose 2"
+        ;;
+      3)
+        echo "you chose 3"
+        ;;
+    esac
+done

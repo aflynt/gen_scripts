@@ -1,0 +1,15 @@
+#!/usr/bin/python
+''' program to convert inches to meters
+    input:  inches
+    output: meters
+'''
+
+print 'Convert Inches to Meters'
+v = 1.0
+
+#while True:
+while v > 0.0:
+  v = input('give meters: ')
+  print '%f m == %f inches ' % (v, v/.0254)
+
+

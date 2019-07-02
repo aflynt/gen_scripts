@@ -1,0 +1,32 @@
+#!/bin/bash
+
+FILE="fig1.png"
+
+ADDR1="austin.flynt@jacobs.com"
+
+SUBJECT="email from linux"
+
+BODY="See Attached"
+
+
+# attach file if given
+if [ $1 ]; then
+   FILE=$1
+   echo $BODY             |\
+     mutt -s $SUBJECT      \
+          -a $FILE         \
+          -- $ADDR1
+# otherwise, email done time
+else
+   SUBJECT="Done"
+   BODY="Done on `date`"
+   echo $BODY             |\
+     mutt -s $SUBJECT      \
+          -- $ADDR1
+fi
+
+
+#/home/flyntga/bin/gimme 1 > /tmp/mail_report.log
+#/home/flyntga/bin/alltop >> /tmp/mail_report.log
+
+#mail -s "Machine report" austin.flynt@jacobs.com </tmp/mail_report.log

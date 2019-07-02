@@ -1,0 +1,60 @@
+#!/usr/bin/python
+import math
+from sys import argv
+
+script, dx, dy, dz = argv
+
+dx = float(dx)
+dy = float(dy)
+dz = float(dz)
+
+#p1x = 0.0
+#p1y = 0.0
+#p1z = 0.0
+#p2x = 0.0
+#p2x = 0.0
+#p2y = 1.0/2.0
+#p2z = 0.0
+#
+#eps = 0.0000000001
+#dx = (p2x - p1x)+eps
+#dy = (p2y - p1y)+eps
+#dz = (p2z - p1z)+eps
+#print "dx = %5.6f" %  dx
+#print "dy = %5.6f" %  dy
+#print "dz = %5.6f" %  dz
+
+if dy == 0:
+  a1 = 90.0
+else:
+  a1 = math.atan(dx/dy)*180/math.pi
+
+if dz == 0:
+  b1 = 90.0
+else:
+  b1 = math.atan(dy/dz)*180/math.pi
+
+if dx == 0:
+  g1 = 90.0
+else:
+  g1 = math.atan(dz/dx)*180/math.pi
+
+
+a2 = 90.0 - a1
+b2 = 90.0 - b1
+g2 = 90.0 - g1
+
+print "alpha = atan(dx/dy) : %5.2f %s or %5.2f %s" % (a1, "deg", a2, "deg")
+print "beta  = atan(dy/dz) : %5.2f %s or %5.2f %s" % (b1, "deg", b2, "deg")
+print "gamma = atan(dz/dx) : %5.2f %s or %5.2f %s" % (g1, "deg", g2, "deg")
+
+#x = int(input("Please enter an int: "))
+#if x < 0:
+#  x = 0
+#  print('negative changed to zero')
+#elif x == 0:
+#  print('zero')
+#elif x == 1:
+#  print('Single')
+#else:
+#  print('More')

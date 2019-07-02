@@ -1,0 +1,59 @@
+#!/bin/bash
+MINPARAMS=0
+   S="ps"
+
+# Get argument from command line
+if [ $# -gt "$MINPARAMS" ]
+  then
+   S=$1
+fi
+echo
+
+# If arg is  PS, check what users/commands are using the most cpu
+# If arg is ram, check ram usage
+#for MACH in linux23 linux38 linux58 linux59 linux19 linux21 linux22 linux3 linux4
+#for MACH in linux21 linux22 linux3 linux4 linux23 linux38 linux58 linux59 linux19
+#for MACH in linux21 linux22 linux3 linux4 linux23 linux38 linux58 linux59 linux19
+#for MACH in linux21 linux22 linux3 linux4 linux23 linux38 linux58 linux59
+if [ $# -gt "$MINPARAMS" ]; then
+  for MACH in linux3 linux4 linux23 linux38 linux58 linux59
+  do
+    echo "                                        MACHINE $MACH"
+  #  echo '                                        ---------------'
+    if [ $S == "ps" ]; then
+     #   echo 'i want ps'
+        #rsh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+        ssh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+    fi
+    echo
+    if [ $S == "ram" ]; then
+      #  echo 'i want ram'
+      #rsh  $MACH pfree #| grep %
+       #rsh  $MACH /home/flyntga/bin/pfree #| grep %
+       ssh  $MACH /home/flyntga/bin/pfree #| grep %
+    fi
+  done
+else
+  for MACH in linux21 linux22 linux3 linux4
+  do
+    echo "                                        MACHINE $MACH"
+  #  echo '                                        ---------------'
+    if [ $S == "ps" ]; then
+     #   echo 'i want ps'
+        #rsh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+        ssh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+    fi
+    echo
+    if [ $S == "ram" ]; then
+      #  echo 'i want ram'
+      #rsh  $MACH pfree #| grep %
+       #rsh  $MACH /home/flyntga/bin/pfree #| grep %
+       ssh  $MACH /home/flyntga/bin/pfree #| grep %
+    fi
+  done
+fi
+
+
+  #rsh  -l flyntga linux23 top -bn 1 | awk "NR >5 && NR <11"
+  #rsh $MACH ps -Ao user,uid,comm,pid,pcpu,tty --sort=-pcpu | head -n 6
+

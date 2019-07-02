@@ -1,0 +1,8 @@
+#!/bin/bash
+# getsec: print seconds since 1970
+
+case $# in
+0)  date +%s >>/tmp/time.junk ;; #no args: print to tmp
+*)  date +%s >>$1             ;; #1 arg: use file given
+esac
+

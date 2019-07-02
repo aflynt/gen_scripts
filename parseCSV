@@ -1,0 +1,15 @@
+#!/bin/bash
+
+FILE=$1
+
+echo parsing $FILE
+
+tail -n +2 $FILE | awk -F, '{print  $1,","  $2}' > f1
+tail -n +2 $FILE | awk -F, '{print  $3,","  $4}' > f2
+tail -n +2 $FILE | awk -F, '{print  $5,","  $6}' > f3
+tail -n +2 $FILE | awk -F, '{print  $7,","  $8}' > f4
+tail -n +2 $FILE | awk -F, '{print  $9,"," $10}' > f5
+tail -n +2 $FILE | awk -F, '{print $11,"," $12}' > f6
+
+cat f1 f2 f3 f4 f5 f6 | sort | uniq | grep -v "null" > uniq-$FILE
+

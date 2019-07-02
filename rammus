@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#for i in $( ls ); do
+#for i in `seq 1 $1`;
+#stime=1;
+while true;
+do
+  echo -n `/home/flyntga/bin/gfree`;
+  pbar `/home/flyntga/bin/gfree`
+  sleep $1;
+done

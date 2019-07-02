@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# pless: find what percent lower x is than y
+# pless < x > < y >
+#echo $1:10:23:24 |\
+echo $* |\
+awk  -F' ' '{{x = $1;\
+              y = $2;\
+              p =  ( 1 - x/y ) * 100.;\
+              printf "%.1f\n", p}}'

@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# upcharge: increases x by p %
+# upcharge < x > < p >
+#echo $1:10:23:24 |\
+echo $* |\
+awk  -F' ' '{{x = $1;\
+              p = $2;\
+              y =  x * (1 + p / 100.);\
+              printf "%.2f\n",y}}'

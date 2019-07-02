@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# time til = future time - curent time
+#echo $1:10:23:24 |\
+#echo $1:$2:`date +%k:%M:%S` |\
+#awk -F: '{{dt = $1*3600+$2*60;\
+#          cth = $3;\
+#          ctm = $4;\
+#          cts = $5;\
+#          ctpdt = dt + cts + 60*ctm + 3600*cth;\
+#          fth = ctpdt / 3600.;\
+#          ftm = (ctpdt / 60.) % 60.;\
+#          fts = ctpdt % 60.;\
+#          tth = fth - cth;\
+#          ttm = ftm - ctm;\
+#          printf "%2.0d:%2.0d\n",tth, ttm}}'
+
+echo $1:$2:`date +%k:%M:%S` |\
+awk -F: '{{ftsec = $1*3600+$2*60;\
+          cth = $3;\
+          ctm = $4;\
+          cts = $5;\
+          ctsec = cth*3600+ctm*60+cts;\
+          dtsec = ftsec - ctsec;\
+          dth = dtsec / 3600.;\
+          dtm = (dtsec / 60.) % 60.;\
+          printf "%d:%d\n", dth,dtm}}'

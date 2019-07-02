@@ -1,0 +1,11 @@
+#!/bin/bash
+
+mkdir pms
+cd pms
+ln -s ../monitor_cell_25961.dat  .
+ln -s ../monitor_cell_244242.dat  .
+ln -s ../monitor_cell_88658.dat  .
+ln -s ../monitor_cell_333215.dat  .
+ln -s ../monitor_cell_343345.dat  .
+ln -s ../monitor_cell_196864.dat  .
+

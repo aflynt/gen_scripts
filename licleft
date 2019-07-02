@@ -1,0 +1,4 @@
+#!/bin/tcsh
+
+#/home/flyntga/bin/sub 125 `
+lmutil lmstat -a | grep "Users of hpcdomains" | sed 's:\ :\n:g' | sort -n | tail -2 | head -1

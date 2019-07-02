@@ -1,0 +1,4 @@
+#!/bin/bash
+#get specified column
+
+cut -d' ' -f $1

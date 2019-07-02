@@ -1,0 +1,14 @@
+#!/bin/bash
+#
+# Future time = curent time + given seconds
+#echo $1:10:23:24 |\
+echo $1:`date +%k:%M:%S` |\
+awk -F: '{{dt = $1;\
+          cth = $2;\
+          ctm = $3;\
+          cts = $4;\
+          ctpdt = dt + cts + 60*ctm + 3600*cth;\
+          fth = (ctpdt / 3600.) % 12;\
+          ftm = (ctpdt / 60.) % 60.;\
+          fts = ctpdt % 60.;\
+          printf "%2.0d:%2.0d:%2.0d\n",fth, ftm, fts}}'

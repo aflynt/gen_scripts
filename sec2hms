@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+# Future time = curent time + given seconds
+#echo $1:10:23:24 |\
+echo $1 |\
+awk  '{{dt = $1;\
+          fth = dt / 3600.;\
+          ftm = (dt / 60.) % 60.;\
+          fts = dt % 60.;\
+          printf "%02.0d:%02.0d:%02.0d\n",fth, ftm, fts}}'

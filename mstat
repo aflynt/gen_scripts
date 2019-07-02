@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# get status of licences and computers
+FILE="/home/flyntga/stat_file.txt"
+gimme 1 >$FILE 2>/dev/null
+alltop >>$FILE 2>/dev/null
+cat $FILE
+
+ADDR1="austin.flynt@jacobs.com"
+
+SUBJECT="Linux Report"
+BODY="Linux Report on `date`"
+
+
+#// attach file in email if arg is given
+if [ $1 ]; then
+   echo $BODY             |\
+     mutt -s "$SUBJECT"      \
+          -a $FILE         \
+          -- $ADDR1
+fi
+#// email date
+#else
+#   echo $BODY             |\
+#     mutt -s "$SUBJECT"      \
+#          -- $ADDR1
+#fi

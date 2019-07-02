@@ -1,0 +1,1 @@
+du -sh * | grep "[0-9]G" | sed "s/G//g" | sort -n

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#pwrite `ls -ltr | tail -n2 | head -n1 | awk "{print $5}" 
+#FMAX=`ls -ltr | tail -n2 | head -n1 | awk '{print $5}'`
+FMAX=`ls -ltr | grep '~$' | tail -n1 | awk '{print $5}'`
+FS=0
+FS2=0
+
+# check if max file size if given on cmd line
+if [ "$1" != "" ];then
+  FMAX=$1
+  #echo "I got value $FMAX"
+fi
+
+
+# print percent file size written
+while [ $FS -lt $[$FMAX-300000] ]; do
+  let FS=`ls -ltra | tail -n -1 | 1sp | cut -d' ' -f 5`;
+  ST=4;
+  sleep $ST;
+  let FS2=`ls -ltra | tail -n -1 | 1sp | cut -d' ' -f 5`;
+
+  pbar $FS $FMAX;
+#  let SECS=`slip $FS $FMAX $FS2 0 2 | awk '{print $3}'`;
+#  let TTT=`sec2hms $SECS 0 1`;
+#  echo $FS $FMAX $SECS;
+  echo $FS $FMAX;
+  sec2hms `slip $FS $FMAX $FS2 0 $ST | awk '{print $3}'`;
+done
+
+
+#for (( ; ; ))
+#do
+#  echo `ls -ltra | tail -n -1 | 1sp | cut -d' ' -f 5 ` $1;
+#  pbar `ls -ltra | tail -n -1 | 1sp | cut -d' ' -f 5 ` $1;
+#  sleep 4;
+#done

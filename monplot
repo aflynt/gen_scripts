@@ -1,0 +1,39 @@
+#!/bin/bash
+CASE=`pwd`
+
+LOC="Corner 3"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_25961.dat" every ::3 using 1:6 w l
+EOFMarker
+
+LOC="Backleg"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_244242.dat" every ::3 using 1:6 w l
+EOFMarker
+
+LOC="Corner 2"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_88658.dat" every ::3 using 1:6 w l
+EOFMarker
+
+LOC="Corner 4"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_333215.dat" every ::3 using 1:6 w l
+EOFMarker
+
+LOC="Collector"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_343345.dat" every ::3 using 1:6 w l
+EOFMarker
+
+LOC="Corner 1"
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$LOC"
+  plot "monitor_cell_196864.dat" every ::3 using 1:6 w l
+EOFMarker
+

@@ -1,0 +1,8 @@
+#!/bin/bash
+#
+# Future time = curent time + given seconds
+echo $* |\
+awk -F\  '{{h = $1;\
+           m = $2;\
+           s = $3;\
+          printf "%d\n",h*60*60 + m*60 + s}}'

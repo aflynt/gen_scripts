@@ -1,0 +1,8 @@
+#!/bin/bash
+
+free -g
+#pbar `free -k | grep Mem | 1sp | awk '{print $3,$2}'`
+#/home/flyntga/bin/pbar `free -k | grep Mem | 1sp | awk '{print $3,$2}'`
+/home/flyntga/bin/pbar `free -k | grep Mem | /home/flyntga/bin/1sp | awk '{print $3,$2}'`
+
+

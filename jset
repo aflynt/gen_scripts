@@ -1,0 +1,85 @@
+#!/usr/bin/tcsh
+
+# SET PARAMETERS
+#=================================
+#set itmax  = "4194304"
+set itmax  = "1048576"
+#set itmax  = "524288"
+#set itmax  = "2097152"
+
+#set itsave = "2048"
+set itsave = "65536"
+#set itsave = "512"
+
+#set DIR = "postrun"
+set DIR = "restart"
+
+set timestep = "2.5e-6"
+
+set isRestart = "true"
+
+set wtave = "1"
+#=================================
+
+
+#make a post run directory
+mkdir $DIR
+cp monitor_* *grid* *restart_* prob_0.dat $DIR/
+
+cd $DIR/
+set pwd = `pwd`
+echo pwd = $pwd
+
+# CHANGE LINE 3 (true for restart)
+set line3 = "0	1.0	$isRestart	false	false"
+echo line 3 is $line3
+sed -i "3s/.*/$line3/" $pwd/prob_0.dat
+
+# CHANGE LINE 4 (time step change)
+set line4 = "true	0.85	$timestep	1.0"
+echo line 4 is $line4
+sed -i "4s/.*/$line4/" $pwd/prob_0.dat
+
+# CHANGE LINE 5 (itmax itsave itrestart)
+set line5 = "$itmax	$itsave	65536"
+echo line 5 is $line5
+sed -i "5s/.*/$line5/" $pwd/prob_0.dat
+
+# CHANGE LINE 8 (itmax itsave itrestart)
+set line8 = "$wtave	1.0	1.0	0.0	0.6	0.6"
+echo line 8 is $line8
+sed -i "8s/.*/$line8/" $pwd/prob_0.dat
+
+# copy prob 0 to 32 other files
+cp prob_0.dat prob_10.dat
+cp prob_0.dat prob_11.dat
+cp prob_0.dat prob_12.dat
+cp prob_0.dat prob_13.dat
+cp prob_0.dat prob_14.dat
+cp prob_0.dat prob_15.dat
+cp prob_0.dat prob_16.dat
+cp prob_0.dat prob_17.dat
+cp prob_0.dat prob_18.dat
+cp prob_0.dat prob_19.dat
+cp prob_0.dat prob_1.dat
+cp prob_0.dat prob_20.dat
+cp prob_0.dat prob_21.dat
+cp prob_0.dat prob_22.dat
+cp prob_0.dat prob_23.dat
+cp prob_0.dat prob_24.dat
+cp prob_0.dat prob_25.dat
+cp prob_0.dat prob_26.dat
+cp prob_0.dat prob_27.dat
+cp prob_0.dat prob_28.dat
+cp prob_0.dat prob_29.dat
+cp prob_0.dat prob_2.dat
+cp prob_0.dat prob_30.dat
+cp prob_0.dat prob_31.dat
+cp prob_0.dat prob_3.dat
+cp prob_0.dat prob_4.dat
+cp prob_0.dat prob_5.dat
+cp prob_0.dat prob_6.dat
+cp prob_0.dat prob_7.dat
+cp prob_0.dat prob_8.dat
+cp prob_0.dat prob_9.dat
+

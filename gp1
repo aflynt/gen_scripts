@@ -1,0 +1,17 @@
+#!/bin/bash
+CASE=`pwd`
+
+if [ $# -gt 0 ]; then
+  fname=$1
+else
+  echo -n "Enter the file name to plot: "
+  read fname
+fi
+
+echo fname = $fname
+
+gnuplot -persist <<-EOFMarker
+  set title "$CASE,$fname"
+  plot "$CASE/$fname" every ::3 using 1:6 w l
+EOFMarker
+

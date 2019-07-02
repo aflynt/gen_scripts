@@ -1,0 +1,39 @@
+#!/bin/bash
+CASE=`pwd`
+
+DIR="monitorPost"
+
+# CHECK IF CASE IS HR
+isHR=$1
+
+if [[ $isHR = "1" ]]; then
+  FILEC="monitor_cell_195349.dat"
+  FILE1="monitor_cell_323547.dat"
+  FILE2="monitor_cell_99837.dat"
+  FILEBL="monitor_cell_268786.dat"
+  FILE3="monitor_cell_25854.dat"
+  FILE4="monitor_cell_363792.dat"
+else
+  FILEC="monitor_cell_343345.dat"
+  FILE1="monitor_cell_196864.dat"
+  FILE2="monitor_cell_88658.dat"
+  FILEBL="monitor_cell_244242.dat"
+  FILE3="monitor_cell_25961.dat"
+  FILE4="monitor_cell_333215.dat"
+fi
+
+echo "copying monitors to $DIR"
+mkdir $DIR
+ln -s  $CASE/$FILEC  $DIR
+ln -s  $CASE/$FILE1  $DIR
+ln -s  $CASE/$FILE2  $DIR
+ln -s  $CASE/$FILEBL $DIR
+ln -s  $CASE/$FILE3  $DIR
+ln -s  $CASE/$FILE4  $DIR
+ln -s  $CASE/$FILEC.png $DIR
+ln -s  $CASE/$FILE1.png $DIR
+ln -s  $CASE/$FILE2.png $DIR
+ln -s  $CASE/$FILEBL.png $DIR
+ln -s  $CASE/$FILE3.png $DIR
+ln -s  $CASE/$FILE4.png $DIR
+

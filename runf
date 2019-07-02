@@ -1,0 +1,3 @@
+#!/bin/bash
+(cd `pwd`; mpirun -np 32 justus prob > output.dat ; rsh linux16 "cd `pwd`; p2f $1" ; echo "done with case `pwd`" | mutt -s "done on `hostname`" -a *png -- austin.flynt@jacobs.com ) &
+#( echo "running in `pwd`" ; rsh linux16 "cd `pwd`; p2f 1" ; echo "done with case `pwd`" | mutt -s "done on `hostname`" -a *png -- austin.flynt@jacobs.com ) &
