@@ -1,0 +1,10 @@
+#!/bin/bash
+# clean ccm+ headers to remove monitor and repeated names
+
+for i in $( ls | grep '.*csv'); do
+  name=$( echo $i |  sed 's/.csv//g')
+  new_name="h_${name}.csv"
+  echo $new_name
+  sed -f ~/git/gen_scripts/sed_rmMonitor `pwd`/$i >`pwd`/$new_name
+done
+
