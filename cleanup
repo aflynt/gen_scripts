@@ -1,5 +1,6 @@
 #!/bin/bash
 # clean ccm+ headers to remove monitor and repeated names
+# do this for all csv files in pwd
 
 for i in $( ls | grep '.*csv'); do
   name=$( echo $i |  sed 's/.csv//g')
