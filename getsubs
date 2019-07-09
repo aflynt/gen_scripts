@@ -1,0 +1,36 @@
+#!/bin/bash
+#
+# COMMAND: subdirs <KEY> <OUT-DIR>
+#
+# DESCRIPTION: copy ./subdir*/file* to $outdir
+
+SUBDIRS=`subdirs`
+
+
+# FILES TO FIND (e.g. *.dat)
+if [ "$1" != "" ]; then
+  KEY=$1
+else
+  KEY='*'
+fi
+
+# OUTPUT DIRECTORY (e.g. ./dir)
+if [ "$2" != "" ]; then
+  ODIR=$2
+else
+  ODIR="newdir"
+fi
+
+mkdir $ODIR
+
+echo ############################
+echo using        key = $KEY
+echo using output dir = $ODIR
+echo ############################
+
+for i in $SUBDIRS
+do
+  echo -e copying '\t' $i/$KEY
+  cp $i/$KEY $ODIR
+done
+
