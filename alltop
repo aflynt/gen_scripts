@@ -34,7 +34,7 @@ if [ $# -gt "$MINPARAMS" ]; then
     fi
   done
 else
-  for MACH in linux21 linux22 linux3 linux4
+  for MACH in linux21 linux22 linux3 linux4 linux40
   do
     echo "                                        MACHINE $MACH"
   #  echo '                                        ---------------'

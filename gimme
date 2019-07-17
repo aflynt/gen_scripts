@@ -9,11 +9,11 @@ if [ $1 ]; then
   ssh linux9 $CMD |\
   grep -v 'flex3'|\
   awk '/Users/ {printf "%11s %2s %2s %2s %4s %2s %4s\n", $3,  $11,"of",  $6, "used", $6-$11, "Left"};\
-      /start/ {printf "\t\t\t\t\t%10s %8s %2s\n",$1,$2, $11}' 2>/dev/null
+      /start/ {printf "\t\t\t\t\t%10s %8s %2s\n",$1,$2, $11}' | tail  2>/dev/null
   #awk '/Users/ {print $3, $11,"of", $6, "used:", $6-$11, "Left"}; /dev/ {printf "\t\t\t\t%10s %8s %2s\n",$1,$2, $11}'
 else
   #ssh linux9 lmutil lmstat -a 2>/dev/null
-  ssh linux9 $CMD 2>/dev/null
+  ssh linux9 $CMD | tail 2>/dev/null
 fi
 
 #lmutil lmstat -a |\
