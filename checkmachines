@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+# Check if all 5 machines are loaded, sum ~= 500 (%)
+# critical low level if machines are ~=450
+MINPARAMS=0
+CRIT=450
+
+# Get argument from command line
+if [ $# -gt "$MINPARAMS" ]
+  then
+   CRIT=$1
+fi
+
+FILE="issue.txt"
+addr="austin.flynt@jacobs.com"
+val=$(alltop | cut -c 20- | sumcol)
+#val=$(alltop | rev | cut -d" " -f 1 | rev | sumcol)
+
+# Machines are ~100% loaded
+if (( $(echo "$val > $CRIT" | bc -l) )); then
+  echo "ALL GOOD, val=$val > $CRIT, `date`" | tee $FILE
+# machines arent 100% loaded
+else
+  echo "*ISSUES*, val=$val < $CRIT, `date`" | tee $FILE
+  alltop >> $FILE
+
+  cat $FILE         |\
+    mutt -s "issue" \
+         -- $addr
+fi

@@ -1,4 +1,5 @@
 #!/bin/bash
+PWD="/home/flyntga/"
 MINPARAMS=0
    S="ps"
 
@@ -7,7 +8,6 @@ if [ $# -gt "$MINPARAMS" ]
   then
    S=$1
 fi
-echo
 
 # If arg is  PS, check what users/commands are using the most cpu
 # If arg is ram, check ram usage
@@ -16,8 +16,9 @@ echo
 #for MACH in linux21 linux22 linux3 linux4 linux23 linux38 linux58 linux59 linux19
 #for MACH in linux21 linux22 linux3 linux4 linux23 linux38 linux58 linux59
 if [ $# -gt "$MINPARAMS" ]; then
-  for MACH in linux3 linux4 linux23 linux38 linux58 linux59
+  for MACH in linux21 linux22 linux3 linux4 linux40
   do
+    echo
     echo "                                        MACHINE $MACH"
   #  echo '                                        ---------------'
     if [ $S == "ps" ]; then
@@ -36,12 +37,14 @@ if [ $# -gt "$MINPARAMS" ]; then
 else
   for MACH in linux21 linux22 linux3 linux4 linux40
   do
-    echo "                                        MACHINE $MACH"
-  #  echo '                                        ---------------'
+    #echo "                                        MACHINE $MACH"
+    #echo '                                        ---------------'
     if [ $S == "ps" ]; then
      #   echo 'i want ps'
         #rsh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
-        ssh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+        #ssh $MACH ps -Ao user,comm,pid,pcpu --sort=-pcpu | head -n 4 2>/dev/null
+        #ssh $MACH ps -eo "%C" | sort | tail -n 2 | sort -r | tail -n 1 | awk -vhostname="$(hostname)" '{printf("%-20s %-4.1f \n",hostname, $0)}' 2>/dev/null
+        ssh $MACH $PWD/bin/isloaded
     fi
     echo
     if [ $S == "ram" ]; then

@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+# mv pictures to sub directories
+
+for f in `ls --color=none --hide="*png"`
+do
+    echo $f*png $f | xargs mv
+done

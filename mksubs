@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+# make sub directories from picture png names
+
+for f in `ls *`
+do
+    echo $f | sed -e "s/_.*_.*//"
+done | sort | uniq | xargs mkdir

@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+#ps -eo "%C" | sort | tail -n 2 | sort -r | tail -n 1 | awk -vhostname="$(hostname)" '{printf("%-20s %-4.1f",hostname, $0)}' 2>/dev/null
+#ps -eo "%C" | grep -v CPU | sort -n | tail -n 1
+ps -eo "%C" | grep -v CPU | sort -n | tail -n 1 | awk -vhostname="$(hostname)" '{printf("%-20s %-4.1f",hostname, $0)}' 2>/dev/null
