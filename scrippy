@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+N="201"
+
+
+# list of strings to evaluate
+strings=(
+  "fx"
+  "fy"
+  "fz"
+  "moments"
+)
+
+for i in "${strings[@]}"; do
+
+  echo  working on $i 
+
+  # Get the header row (cleaned up)
+  head -n 1   $i.csv | sed -e 's/Monitor//g' \
+                           -e 's/: //g' \
+                           -e 's/\b\([A-Z].*-[a-z].*\)[ ,\n]\+\1/\1/g' \
+                           -e 's/  / /g' \
+                             >  end-$i.csv
+  
+  # Get the last N rows of data
+  tail -n $N $i.csv >> end-$i.csv
+
+  # average columns of data
+  /home/flyntga/bin/ave end-$i.csv > ave-$i.csv
+done
+
